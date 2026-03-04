@@ -71,11 +71,18 @@ export function EntryCard({ entry }: EntryCardProps) {
         )}
 
         {entry.imageUrl && (
-          <div className="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2">
-            <ImageIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="truncate text-xs text-muted-foreground">
-              {entry.imageName ?? "screenshot.png"}
-            </span>
+          <div className="flex flex-col gap-2 rounded-lg bg-secondary px-3 py-2">
+            <div className="flex items-center gap-2">
+              <ImageIcon className="h-4 w-4 text-muted-foreground" />
+              <span className="truncate text-xs text-muted-foreground">
+                {entry.imageName ?? "Screenshot"}
+              </span>
+            </div>
+            <img
+              src={entry.imageUrl}
+              alt={entry.imageName ?? "Screenshot"}
+              className="max-h-40 w-auto rounded-md border border-border object-cover"
+            />
           </div>
         )}
 

@@ -39,27 +39,36 @@ export function DiaryForm({ onEntrySaved }: DiaryFormProps) {
 
     setIsSubmitting(true)
 
-    // 把文字/图片/音频真正保存到 Firebase（Firestore + Storage）
-    await saveEntry({
-      bodySensation,
-      wearableData,
-      image: imageFile,
-      audioBlob: audioBlob,
-      audioDuration,
-    })
+    try {
+      // 把文字/图片/音频真正保存到 Firebase（Firestore + Storage）
+      await saveEntry({
+        bodySensation,
+        wearableData,
+        image: imageFile,
+        audioBlob: audioBlob,
+        audioDuration,
+      })
 
-    // Reset form
-    setBodySensation("")
-    setWearableData("")
-    setImageFile(null)
-    clearAudio()
-    setIsSubmitting(false)
+      // 重置表单
+      setBodySensation("")
+      setWearableData("")
+      setImageFile(null)
+      clearAudio()
 
-    toast.success("Entry saved", {
-      description: "Your body sensation log has been recorded.",
-    })
+      toast.success("Entry saved", {
+        description: "Your body sensation log has been recorded.",
+      })
 
-    onEntrySaved()
+      onEntrySaved()
+    } catch (error) {
+      console.error("Save entry failed:", error)
+      toast.error("保存失败", {
+        description: "和服务器通信时出错，请稍后再试。",
+      })
+    } finally {
+      // 无论成功还是失败，都停止“转圈”
+      setIsSubmitting(false)
+    }
   }
 
   const today = new Date()

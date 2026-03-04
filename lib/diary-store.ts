@@ -76,9 +76,10 @@ export async function saveEntry(payload: DiaryPayload): Promise<DiaryEntry> {
     date: dateIso,
     bodySensation: payload.bodySensation,
     wearableData: payload.wearableData,
-    imageUrl,
-    imageName,
-    audioUrl,
+    // Firestore 不接受 undefined，所以这里统一转成 null
+    imageUrl: imageUrl ?? null,
+    imageName: imageName ?? null,
+    audioUrl: audioUrl ?? null,
     audioDuration: payload.audioDuration ?? null,
     createdAt: serverTimestamp(),
   })

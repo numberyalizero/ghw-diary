@@ -1,0 +1,17 @@
+{
+  "name": "BodyLog - Feel vs. Data",
+  "short_name": "BodyLog",
+  "description": "探索你的身体感知与量化健康数据之间的关系",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f0e8",
+  "theme_color": "#f5f0e8",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
